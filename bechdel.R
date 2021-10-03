@@ -1,13 +1,13 @@
 library(pacman)
-p_load(ggplot2, data.table, openxlsx, DT, reactable, flexdashboard)
+p_load(ggplot2, data.table, openxlsx, DT, reactable, flexdashboard, tidyverse)
 
 # https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-03-09/readme.md
+
+# Import
 
 raw_bechdel <- fread('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/raw_bechdel.csv')
 
 movies <- fread('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/movies.csv')
-
-#movies[, grep(c("amp"), names(movies)), with = FALSE]
 
 # Cleaning
 
