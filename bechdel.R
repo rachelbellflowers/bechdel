@@ -9,7 +9,7 @@ movies <- fread('https://raw.githubusercontent.com/rfordatascience/tidytuesday/m
 
 #movies[, grep(c("amp"), names(movies)), with = FALSE]
 
-# with
+# Cleaning
 
 movies$title <- gsub("&amp;", "&", movies$title)
 
@@ -19,7 +19,7 @@ raw_bechdel$title <- gsub("&amp;", "&", raw_bechdel$title)
 
 raw_bechdel$title <- gsub("&#39;|â€™", "'", raw_bechdel$title)
 
-raw_bechdel$title <- gsub("&quot;", , raw_bechdel$title))  
+raw_bechdel$title <- gsub("&quot;","\"", raw_bechdel$title)
 
 movies <- movies[order(title)]
 raw_bechdel <- raw_bechdel[order(title)]
