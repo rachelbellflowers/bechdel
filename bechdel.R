@@ -65,4 +65,10 @@ ggplot(movbech, aes(binary)) +
   labs(title="Bechdel Pass Rate", x="Rating", y="Count") +
   theme_minimal()
 
+ggplot(movbech, aes(budget_2013, domgross_2013)) +
+  geom_smooth(color="red", se=FALSE) +
+  geom_line()
 
+# grep("Harry Potter.*", movbech$title)
+
+hp <- movbech[588:595]
