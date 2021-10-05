@@ -42,33 +42,34 @@ raw_bechdel$title <- gsub("&quot;","\"", raw_bechdel$title)
 ###
 
 # Joins and New Columns
-movbech <- raw_bechdel[movies, on = .(title, year)]
+movbech <- raw_bechdel[movies, on = .(title, year)][order(title)]
 
 movbech[, budget_2013_mean := mean(budget_2013), by = binary]
 
+movbech$binary_num <- fifelse(movbech$binary=="FAIL", 0, 1)
+
+movbech$imdb_votes <- gsub(",", "", movbech$imdb_votes)
+
+movbech[, imdb_votes:=as.integer(imdb_votes)]
+
+movbech <- movbech[!is.na(rated)]
+
 # Graphs
-
-# level_order <- c('virginica', 'versicolor', 'setosa') #this vector might be useful for other plots/analyses
-
-# ggplot(iris, aes(x = factor(Species, level = level_order), y = Petal.Width)) + geom_col()
 
 eval_order <- factor(movbech$rated, level = c("G", "PG", "PG-13", "TV-PG", "TV-14", "R", "NC-17", "X", "Not Rated", "Unrated", "NA"))
 
 
 ggplot(movbech, aes(eval_order))+
   geom_bar() +
-  labs(title="Movie Ratings", x="Rating", y="Count") +
-  theme_minimal()
+  labs(title="Movie Ratings", x="Rating", y="Count")
 
 ggplot(movbech, aes(binary)) +
   geom_bar() +
-  labs(title="Bechdel Pass Rate", x="Rating", y="Count") +
-  theme_minimal()
+  labs(title="Bechdel Pass Rate", x="Rating", y="Count")
 
 ggplot(movbech, aes(budget_2013, domgross_2013)) +
   geom_smooth(color="red", se=FALSE) +
   geom_line()
 
-# grep("Harry Potter.*", movbech$title)
 
-hp <- movbech[588:595]
+# Bechdel score relation to movie rating, year, genre, movie length
