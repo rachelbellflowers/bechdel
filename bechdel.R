@@ -57,16 +57,23 @@ movbech[, imdb_votes:=as.integer(imdb_votes)]
 
 eval_order <- factor(movbech$rated, level = c("G", "PG", "PG-13", "TV-PG", "TV-14", "R", "NC-17", "X", "Not Rated", "Unrated"))
 
+ggplot(movbech, aes(year, fill = factor(year))) +
+  geom_bar() +
+  theme_minimal()
+
 
 ggplot(movbech, aes(eval_order))+
   geom_bar() +
   labs(title="Movie Ratings", x="Rating", y="Count")
 
-ggplot(movbech, aes(binary)) +
-  geom_bar() +
-  labs(title="Bechdel Pass Rate", x="Rating", y="Count")
 
 ggplot(movbech, aes(budget_2013, domgross_2013)) +
   geom_smooth(color="red", se=FALSE) +
   geom_line()
 
+
+## Bechdel Pass Rate Based on Decade
+
+ggplot(movbech, aes(binary)) +
+  geom_bar() +
+  labs(title="Bechdel Pass Rate", x="Rating", y="Count")
