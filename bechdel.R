@@ -1,5 +1,5 @@
 library(pacman)
-p_load(data.table, tidyverse, corrplot, sqldf, DT, reactable, flexdashboard, htmlwidgets, bslib, lubridate)
+p_load(data.table, tidyverse, corrplot, DT, reactable, flexdashboard, htmlwidgets, bslib, lubridate)
 
 # https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-03-09/readme.md
 
